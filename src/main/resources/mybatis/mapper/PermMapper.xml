@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guany.myscaffold.mapper.PermMapper">
+
+    <select id="selectPerm" resultType="com.guany.myscaffold.entity.PermEntity">
+        SELECT
+        *
+        FROM
+        t_perm
+        WHERE
+        deleted = 0
+        <if test="permCode != null and permCode != '' ">
+            AND perm_code = #{permCode}
+        </if>
+        <if test="permName != null and permName != '' ">
+            AND perm_name = #{permName}
+        </if>
+        <if test="permType != null and permType != '' ">
+            AND perm_type = #{permType}
+        </if>
+    </select>
+
+</mapper>

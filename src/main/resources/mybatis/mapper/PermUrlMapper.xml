@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guany.myscaffold.mapper.PermUrlMapper">
+
+    <select id="selectUrlsByPermId" resultType="com.guany.myscaffold.entity.UrlEntity">
+        select *
+        from t_perm_url tpu
+                 left join t_url tu on tpu.url_id = tu.id and tu.deleted = 0
+        where tpu.deleted = 0
+          and tpu.perm_id = #{permId}
+    </select>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guany.myscaffold.mapper.UserRoleMapper">
+
+    <update id="deleteByUserId">
+        UPDATE t_user_role
+        SET deleted = 1
+        WHERE
+            deleted = 0
+          AND user_id = #{userId}
+    </update>
+
+    <select id="selectRolesByUserId" resultType="com.guany.myscaffold.entity.RoleEntity">
+        select tr.*
+        from t_user_role tur
+                 left join t_role tr on tur.role_id = tr.id and tr.deleted = 0
+        where tur.user_id = #{userId}
+          and tur.deleted = 0
+    </select>
+</mapper>

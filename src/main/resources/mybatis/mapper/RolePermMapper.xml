@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guany.myscaffold.mapper.RolePermMapper">
+
+    <select id="selectPermsByRoleId" resultType="com.guany.myscaffold.entity.PermEntity">
+        select *
+        from t_role_perm trp
+                 left join t_perm tp on trp.perm_id = tp.id and tp.deleted = 0
+        where trp.role_id = #{roleId}
+          and trp.deleted = 0
+    </select>
+</mapper>
